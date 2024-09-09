@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Inventario</title>
+    <link rel="stylesheet" href="proyectico.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de Inventarios de David</h1>
+    </header>
+    <main>
+        <section id="controls">
+            <button onclick="showAddProductForm()">Agregar Producto</button>
+            <button onclick="loadInventory()">Ver Inventario</button>
+        </section>
+        <section id="add-form-section" class="hidden">
+            <form id="add-product-form">
+                <h2 id="add-form-title">Agregar Producto</h2>
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" required>
+                
+                <label for="price">Precio:</label>
+                <input type="number" id="price" step="0.01" required>
+                
+                <label for="quantity">Cantidad:</label>
+                <input type="number" id="quantity" required>
+                
+                <label for="category">Categoría:</label>
+                <input type="text" id="category" required>
+                
+                <input type="hidden" id="product-id">
+                
+                <button type="button" onclick="handleAddProduct()">Guardar</button>
+                <button type="button" onclick="hideForm()">Cancelar</button>
+            </form>
+        </section>
+        <section id="update-form-section" class="hidden">
+            <form id="update-product-form">
+                <h2 id="update-form-title">Actualizar Producto</h2>
+                <label for="update-name">Nombre:</label>
+                <input type="text" id="update-name" required>
+                
+                <label for="update-price">Precio:</label>
+                <input type="number" id="update-price" step="0.01" required>
+                
+                <label for="update-quantity">Cantidad:</label>
+                <input type="number" id="update-quantity" required>
+                
+                <label for="update-category">Categoría:</label>
+                <input type="text" id="update-category" required>
+                
+                <input type="hidden" id="update-id">
+                
+                <button type="button" onclick="handleUpdateProduct()">Actualizar</button>
+                <button type="button" onclick="hideUpdateForm()">Cancelar</button>
+            </form>
+        </section>
+        <section id="inventory-section" class="hidden">
+            <h2>Inventario</h2>
+            <input type="text" id="search" placeholder="Buscar por ID, Nombre o Categoría" oninput="searchInventory()">
+            <table id="inventory-table">
+                <thead>
+                    <tr>
+                        <th>ID</th> <!-- Nueva columna para ID -->
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Categoría</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+
+    <div id="confirmation-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Confirmar Eliminación</h2>
+            <p>¿Estás seguro de que deseas eliminar este producto?</p>
+            <button id="confirm-delete">Sí</button>
+            <button id="cancel-delete">No</button>
+        </div>
+    </div>
+    
+    <script src="proyectico.js"></script>
+</body>
+</html>
